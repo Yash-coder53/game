@@ -1,8 +1,12 @@
 import logging
-from telegram.ext import Application, CommandHandler
-from dr_driving_bot.commands import admin, game, user
-from dr_driving_bot.database import storage
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler
 from dr_driving_bot.config import Config
+from dr_driving_bot.database import initialize
+from dr_driving_bot.commands import (
+    start, my_top, top, rankings,
+    pban, gban, gunban, banall,
+    help, about, button_handler
+)
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", 
@@ -14,23 +18,27 @@ class DrDrivingBot:
     def __init__(self):
         self.app = Application.builder().token(Config.BOT_TOKEN).build()
         self._register_handlers()
-        storage.initialize()
+        initialize()
 
     def _register_handlers(self):
         # Game commands
-        self.app.add_handler(CommandHandler("start", game.start))
-        self.app.add_handler(CommandHandler("mytop", game.my_top))
-        self.app.add_handler(CommandHandler("top", game.top))
-        self.app.add_handler(CommandHandler("rankings", game.rankings))
+        self.app.add_handler(CommandHandler("start", start))
+        self.app.add_handler(CommandHandler("mytop", my_top))
+        self.app.add_handler(CommandHandler("top", top))
+        self.app.add_handler(CommandHandler("rankings", rankings))
         
         # Admin commands
-        self.app.add_handler(CommandHandler("pban", admin.pban))
-        self.app.add_handler(CommandHandler("gban", admin.gban))
-        self.app.add_handler(CommandHandler("gunban", admin.gunban))
-        self.app.add_handler(CommandHandler("banall", admin.banall))
+        self.app.add_handler(CommandHandler("pban", pban))
+        self.app.add_handler(CommandHandler("gban", gban))
+        self.app.add_handler(CommandHandler("gunban", gunban))
+        self.app.add_handler(CommandHandler("banall", banall))
+        
+        # User commands
+        self.app.add_handler(CommandHandler("help", help))
+        self.app.add_handler(CommandHandler("about", about))
         
         # Button handlers
-        self.app.add_handler(CallbackQueryHandler(game.button_handler))
+        self.app.add_handler(CallbackQueryHandler(button_handler))
 
     async def run(self):
         await self.app.initialize()
