@@ -5,7 +5,8 @@ from dr_driving_bot.database import storage
 from dr_driving_bot.config import Config
 
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", 
+    level=logging.INFO
 )
 logger = logging.getLogger(__name__)
 
@@ -27,6 +28,9 @@ class DrDrivingBot:
         self.app.add_handler(CommandHandler("gban", admin.gban))
         self.app.add_handler(CommandHandler("gunban", admin.gunban))
         self.app.add_handler(CommandHandler("banall", admin.banall))
+        
+        # Button handlers
+        self.app.add_handler(CallbackQueryHandler(game.button_handler))
 
     async def run(self):
         await self.app.initialize()
