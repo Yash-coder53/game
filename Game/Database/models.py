@@ -1,5 +1,5 @@
 from peewee import *
-from dr_driving_bot.database import storage
+from Game.database import storage
 
 class BaseModel(Model):
     class Meta:
