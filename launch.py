@@ -2,7 +2,7 @@
 import asyncio
 import platform
 import sys
-from dr_driving_bot.bot import DrDrivingBot
+from Game.bot import DrDrivingBot
 
 def get_platform_config():
     system = platform.system().lower()
