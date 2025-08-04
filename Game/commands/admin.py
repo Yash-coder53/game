@@ -1,10 +1,10 @@
 from telegram import Update
 from telegram.ext import ContextTypes
-from dr_driving_bot.database.models import User, BannedUser
-from dr_driving_bot.database import storage
-from dr_driving_bot.config import Config
-from dr_driving_bot.helpers.decorators import restricted
-from dr_driving_bot.static import messages as msg
+from Game.database.models import User, BannedUser
+from Game.database import storage
+from Game.config import Config
+from Game.helpers.decorators import restricted
+from Game.static import messages as msg
 
 @restricted
 async def pban(update: Update, context: ContextTypes.DEFAULT_TYPE):
