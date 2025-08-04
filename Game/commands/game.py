@@ -1,10 +1,10 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes, CallbackQueryHandler
-from dr_driving_bot.database.models import User, GameScore, BannedUser
-from dr_driving_bot.database import storage
-from dr_driving_bot.config import Config
-from dr_driving_bot.helpers.decorators import check_ban
-from dr_driving_bot.static import messages as msg
+from Game.database.models import User, GameScore, BannedUser
+from Game.database import storage
+from Game.config import Config
+from Game.helpers.decorators import check_ban
+from Game.static import messages as msg
 import random
 import time
 
