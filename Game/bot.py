@@ -1,8 +1,8 @@
 import logging
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler
-from dr_driving_bot.config import Config
-from dr_driving_bot.database import initialize
-from dr_driving_bot.commands import (
+from Game.config import Config
+from Game.database import initialize
+from Game.commands import (
     start, my_top, top, rankings,
     pban, gban, gunban, banall,
     help, about, button_handler
